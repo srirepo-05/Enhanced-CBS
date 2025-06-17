@@ -1,5 +1,6 @@
-from cbs_ma import CBSSolver
+from cbs_ma import CBSMASolver
 import time
+from visual import Animation
 
 class Agent:
     def __init__(self, id, start_pos, goal_pos):
@@ -98,7 +99,7 @@ def run_cbs_ma():
     print()
     
     # Create CBS solver
-    solver = CBSSolver(maze, starts, goals)
+    solver = CBSMASolver(maze, starts, goals)
     
     print("Starting CBS-MA solver...")
     print("=" * 50)
@@ -119,34 +120,17 @@ def run_cbs_ma():
             print("\nFinal paths:")
             for i, path in enumerate(paths):
                 print(f"Agent {i}: {path}")
+
+            # Visualize the solution
+            print("\n***Test paths on a simulation***")
+            animation = Animation(maze, starts, goals, paths)
+            animation.show()
         else:
             print("No solution found with standard splitting")
     except Exception as e:
         print(f"Error with standard splitting: {e}")
     
-    # Reset solver for disjoint splitting
-    solver = CBSSolver(maze, starts, goals)
-    
-    print("\n" + "=" * 50)
-    print("--- Running with Disjoint Splitting ---")
-    start_time = time.time()
-    
-    try:
-        result = solver.find_solution(disjoint=True)
-        if result:
-            paths, generated, expanded = result
-            end_time = time.time()
-            print(f"\nSolution found in {end_time - start_time:.3f} seconds")
-            print(f"Generated nodes: {generated}")
-            print(f"Expanded nodes: {expanded}")
-            
-            print("\nFinal paths:")
-            for i, path in enumerate(paths):
-                print(f"Agent {i}: {path}")
-        else:
-            print("No solution found with disjoint splitting")
-    except Exception as e:
-        print(f"Error with disjoint splitting: {e}")
+   
 
 
 

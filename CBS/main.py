@@ -1,4 +1,5 @@
 from cbs import CBSSolver
+from visual import Animation
 
 class Position:
     def __init__(self, x, y):
@@ -128,9 +129,13 @@ def main():
                 print(f"Agent {i}: {path}")
             
             # Visualize the solution
+            print("\n***Test paths on a simulation***")
+            animation = Animation(my_map, starts, goals, paths)
+            animation.show()
             
     else:
             print("No solution found with standard splitting")
+    
       
 
 

@@ -1,4 +1,5 @@
-from cbs import CBSSolver
+from cbs import CBSPASolver
+from visual import Animation
 
 max_time = 600  # 10 minutes
 max_nodes = 100000  # Maximum nodes to expand
@@ -97,7 +98,7 @@ def main():
     print(f"Goals: {goals}")
     
     # Create CBS solver
-    cbs = CBSSolver(my_map, starts, goals, max_time=max_time, max_nodes=max_nodes)
+    cbs = CBSPASolver(my_map, starts, goals, max_time=max_time, max_nodes=max_nodes)
     
     # Find solution using standard splitting
     print("\n" + "="*50)
@@ -112,6 +113,11 @@ def main():
             for i, path in enumerate(paths):
                 print(f"Agent {i}: {path}")
             print(f"\nStats: Generated={generated}, Expanded={expanded}")
+            
+            # Visualize the solution
+            print("\n***Test paths on a simulation***")
+            animation = Animation(my_map, starts, goals, paths)
+            animation.show()
         else:
             print("No solution found with standard splitting")
     except Exception as e:
