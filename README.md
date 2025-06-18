@@ -46,7 +46,7 @@ This project demonstrates the use of different Conflict-Based Search (CBS) algor
 
 2. **Run the main script**:
     ```bash
-    python run_experiments_maunal.py --solver EECBS
+    python run_experiments_manual.py --solver EECBS
     ```
 
 ## Optimized CBS with parallel processing and conflict priortization (Custom Folder)
